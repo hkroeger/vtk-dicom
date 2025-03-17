@@ -69,6 +69,11 @@ else()
   # When building external to VTK
   message(STATUS "vtkDICOM: Building vtkDICOM outside of VTK")
 
+  # enable cross compile builds
+  if (CMAKE_TOOLCHAIN_FILE)
+   find_package(VTKCompileTools REQUIRED)
+  endif()
+  
   # Find VTK and get VTK configuration information
   find_package(VTK REQUIRED)
 
