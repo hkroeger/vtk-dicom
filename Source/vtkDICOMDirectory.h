@@ -132,8 +132,9 @@ public:
    * This method causes the directory to be read.  It must be called before
    * any of the Get methods.
    */
-  void Update() VTK_DICOM_OVERRIDE { this->Update(0); }
-  void Update(int) VTK_DICOM_OVERRIDE;
+  VTK_DICOM_UPDATE_RETURN_TYPE Update() VTK_DICOM_OVERRIDE {
+    VTK_DICOM_UPDATE_RETURN(this->Update(0)); }
+  VTK_DICOM_UPDATE_RETURN_TYPE Update(int) VTK_DICOM_OVERRIDE;
 #if (VTK_MAJOR_VERSION == 7 && VTK_MINOR_VERSION > 0) || VTK_MAJOR_VERSION > 7
   vtkTypeBool Update(vtkInformation *) VTK_DICOM_OVERRIDE {
     this->Update(); return 1; }

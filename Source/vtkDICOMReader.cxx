@@ -1910,12 +1910,18 @@ bool vtkDICOMReader::ReadOneFile(
 }
 
 //----------------------------------------------------------------------------
-void vtkDICOMReader::Update()
+VTK_DICOM_UPDATE_RETURN_TYPE vtkDICOMReader::Update()
 {
   // if user didn't specify a port, also update the overlay if present
   this->UpdateOverlayFlag = true;
+#ifdef VTK_DICOM_UPDATE_RETURNS_BOOL
+  bool result = this->Superclass::Update();
+  this->UpdateOverlayFlag = false;
+  return result;
+#else
   this->Superclass::Update();
   this->UpdateOverlayFlag = false;
+#endif
 }
 
 //----------------------------------------------------------------------------

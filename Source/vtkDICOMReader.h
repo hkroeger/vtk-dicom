@@ -319,7 +319,7 @@ public:
   //@{
   using Superclass::Update;
   //! Update both the image and, if present, the overlay
-  void Update() VTK_DICOM_OVERRIDE;
+  VTK_DICOM_UPDATE_RETURN_TYPE Update() VTK_DICOM_OVERRIDE;
   //@}
 #endif
 
