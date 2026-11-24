@@ -38,4 +38,15 @@
 /* To support '=delete' for C++11 compilers */
 #define VTK_DICOM_DELETE@DICOM_DELETE@
 
+/* VTK 9.4 changed the return type of vtkAlgorithm::Update() to bool */
+#include "vtkVersionMacros.h"
+#if VTK_MAJOR_VERSION > 9 || (VTK_MAJOR_VERSION == 9 && VTK_MINOR_VERSION >= 4)
+#define VTK_DICOM_UPDATE_RETURNS_BOOL
+#define VTK_DICOM_UPDATE_RETURN_TYPE bool
+#define VTK_DICOM_UPDATE_RETURN(x) return (x)
+#else
+#define VTK_DICOM_UPDATE_RETURN_TYPE void
+#define VTK_DICOM_UPDATE_RETURN(x) (void)(x)
+#endif
+
 #endif
